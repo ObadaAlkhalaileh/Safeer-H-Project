@@ -7,7 +7,7 @@ import { map, Observable } from 'rxjs';
 export class LocationsService {
   constructor(private readonly httpService: HttpService) {}
 
-  PlaceAutoComplete(input): Observable<AxiosResponse<any>> {
+  PlaceAutoComplete(input:string): Observable<AxiosResponse<any>> {
     
     const res = this.httpService
       .get(`https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${input}}&components=country:JO&key=AIzaSyCyCaYl9RqVL9oN6vsDK-OKYXs_vHUTtDo`)
@@ -22,4 +22,13 @@ export class LocationsService {
   //     .toPromise();
   //   return response.data;
   // }
+
+  PlaceAutoCompleteRestricted(input:string,country:string): Observable<AxiosResponse<any>> {
+    
+    const res = this.httpService
+      .get(`https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${input}}&components=country:${country}&key=AIzaSyCyCaYl9RqVL9oN6vsDK-OKYXs_vHUTtDo`)
+      .pipe(map((response) => response.data));
+
+    return res;
+  }
 }
