@@ -7,28 +7,44 @@ import { map, Observable } from 'rxjs';
 export class LocationsService {
   constructor(private readonly httpService: HttpService) {}
 
-  PlaceAutoComplete(input:string): Observable<AxiosResponse<any>> {
-    
-    const res = this.httpService
+  async PlaceAutoComplete(input: string):Promise<any> {
+    const response = await this.httpService
       .get(`https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${input}}&components=country:JO&key=AIzaSyCyCaYl9RqVL9oN6vsDK-OKYXs_vHUTtDo`)
-      .pipe(map((response) => response.data));
+      .toPromise();
 
-    return res;
+      const places:string[]=[];
+      for (let i = 0; i < response.data.predictions.length; i++) {
+        if(response.data.predictions[i].description.includes('Amman')){
+          places.push(response.data.predictions[i].description);
+        }
+      }
+    return places;
   }
 
-  // async getHello(): Promise<AxiosResponse<any>> {
+  // with restrictions for Amman using google maps options but inaccurate
+
+  // async PlaceAutoComplete(input: string):Promise<any> {
   //   const response = await this.httpService
-  //     .get('https://jsonplaceholder.typicode.com/posts/1')
+  //     .get(`https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${input}&location=31.963158,35.930359&radius=10000&strictbounds=true&key=AIzaSyCyCaYl9RqVL9oN6vsDK-OKYXs_vHUTtDo`)
   //     .toPromise();
-  //   return response.data;
+
+  //     const places:string[]=[]
+  //     for (let i = 0; i < response.data.predictions.length; i++) {
+  //       places.push(response.data.predictions[i].description)
+  //     }
+  //   return places;
   // }
 
-  PlaceAutoCompleteRestricted(input:string,country:string): Observable<AxiosResponse<any>> {
-    
-    const res = this.httpService
-      .get(`https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${input}}&components=country:${country}&key=AIzaSyCyCaYl9RqVL9oN6vsDK-OKYXs_vHUTtDo`)
-      .pipe(map((response) => response.data));
+  // with restrictions for Amman using google maps options and piping the axios response object
 
-    return res;
-  }
+  // PlaceAutoComplete(input: string): Observable<AxiosResponse<any>> {
+  //   const res = this.httpService
+  //     .get(
+  //       `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${input}}&location=31.963158,35.930359&radius=10000&strictbounds=true&key=AIzaSyCyCaYl9RqVL9oN6vsDK-OKYXs_vHUTtDo`,
+  //     )
+  //     .pipe(
+  //       map((response) => response.data.predictions)
+  //     );
+  //   return res;
+  // }
 }
