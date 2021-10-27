@@ -13,11 +13,10 @@ export class LocationsService {
       .toPromise();
 
       const places:string[]=[];
-      for (let i = 0; i < response.data.predictions.length; i++) {
-        if(response.data.predictions[i].description.includes('Amman')){
-          places.push(response.data.predictions[i].description);
-        }
-      }
+      response.data.predictions.forEach((element)=> {
+        if(element.description.includes('Amman')) places.push(element.description);
+      });
+
     return places;
   }
 
@@ -29,9 +28,9 @@ export class LocationsService {
   //     .toPromise();
 
   //     const places:string[]=[]
-  //     for (let i = 0; i < response.data.predictions.length; i++) {
-  //       places.push(response.data.predictions[i].description)
-  //     }
+  //     response.data.predictions.forEach((element)=> {
+  //      if(element.description.includes('Amman')) places.push(element.description);
+  //      });
   //   return places;
   // }
 
