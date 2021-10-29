@@ -20,8 +20,8 @@ export default {
     };
   },
   methods: {
-    getPlaces() {
-      console.log(this.placeName);
+    async getPlaces() {
+      this.results= await fetch(`http://localhost:3000/locations/${this.placeName}`)
     },
   },
 };
