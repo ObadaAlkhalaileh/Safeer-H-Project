@@ -2,7 +2,11 @@
   <div>
     <div class="search-section">
       <input placeholder="search place here" v-model="placeName" @input="getPlaces()"/>
-      <Results :results="results" />
+      <button @click="search()">click</button>
+      <!-- <Results :results="results" /> -->
+       <ul>
+      <li :key="result" v-for="result in results">{{ result }}</li>
+    </ul>
     </div>
   </div>
 </template>
@@ -21,8 +25,12 @@ export default {
   },
   methods: {
     async getPlaces() {
-      this.results= await fetch(`http://localhost:3000/locations/${this.placeName}`)
+      this.results= await (await fetch(`http://localhost:3000/locations/${this.placeName}`)).json()
     },
+    async search(){
+      const res= await fetch(`http://localhost:3000/locations/h`)
+      console.log(res.json());
+    }
   },
 };
 </script>
