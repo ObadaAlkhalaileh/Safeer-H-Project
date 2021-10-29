@@ -1,17 +1,30 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <div class="search-section">
+      <input placeholder="search place here" v-model="placeName" @input="getPlaces()"/>
+      <Results :results="results" />
+    </div>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Results from "./components/Results.vue";
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  name: "App",
+  components: { Results },
+  data() {
+    return {
+      results: ["wasfi al", "wasfi al tal", "hello"],
+      placeName: "",
+    };
+  },
+  methods: {
+    getPlaces() {
+      console.log(this.placeName);
+    },
+  },
+};
 </script>
 
 <style>
