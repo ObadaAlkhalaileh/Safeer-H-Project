@@ -3,12 +3,10 @@
     <h1>Safeer Project</h1>
     <h2>Find Location in Amman</h2>
     <div class="search-section">
-      <input
-        class="search-field"
-        placeholder="search place here"
-        v-model="placeName"
-        @input="getPlaces()"
-      />
+      <div className="search-div">
+        <i class="fas fa-search"></i>
+        <input class="search-field" v-model="placeName" @input="getPlaces()" />
+      </div>
       <ul class="predictions">
         <li
           class="item"
@@ -16,6 +14,7 @@
           v-for="result in results"
           @click="autoComplete(result)"
         >
+          <i class="fas fa-map-marker-alt"></i>&nbsp;
           {{ result }}
         </li>
       </ul>
@@ -24,11 +23,9 @@
 </template>
 
 <script>
-import Results from "./components/Results.vue";
-
 export default {
   name: "App",
-  components: { Results },
+  components: {},
   data() {
     return {
       results: [],
@@ -55,12 +52,12 @@ export default {
 <style>
 body {
   margin: 0;
-  background-image: url("body2.jpg");
+  background-image: url("body.jpg");
 }
 h1,
 h2 {
   text-align: center;
-  margin: 50px;
+  margin: 8vh;
   color: whitesmoke;
 }
 
@@ -69,35 +66,64 @@ h2 {
   font-weight: bold;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  margin-top: 100px;
+  margin-top: 10vh;
   height: 100vh;
 }
 .search-section {
-  width: 600px;
+  width: 40%;
   margin-left: auto;
   margin-right: auto;
 }
-.search-field {
-  height: 30px;
-  font-weight: bold;
-  font-size: 1rem;
-  padding: 0 0 0 7px;
-  width: 589px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+.fa-map-marker-alt {
+  font-size: 20px;
+  color: whitesmoke;
 }
+.fa-search {
+  padding-right: 6px;
+  font-size: 20px;
+}
+.search-div {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  border: solid #d3d9e2 1px;
+  border-radius: 5px;
+  padding-left: 8px;
+  padding-right: 8px;
+  width: 97%;
+  background-color: whitesmoke;
+}
+.search-div:focus-within {
+  border: 2px solid #6a7f9e;
+  border-radius: 5px;
+}
+.search-field {
+  border: none;
+  background-color: inherit;
+  height: 95%;
+  width: 100%;
+  font-size: 18px;
+  font-weight: bold;
+}
+.search-field:focus {
+  outline: none;
+}
+
 .predictions {
   margin: 15px 0;
   list-style-type: none;
   padding: 0px;
   background-color: #6a7f9e;
   border-radius: 5px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 }
 .item {
   padding: 10px 10px 10px 10px;
 }
 .item:hover {
   cursor: pointer;
-  background-color: #3C5576;
+  background-color: #3c5576;
   color: whitesmoke;
 }
 </style>

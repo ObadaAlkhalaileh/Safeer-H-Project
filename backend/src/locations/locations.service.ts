@@ -19,6 +19,7 @@ export class LocationsService {
 
     return places;
   }
+  // we can use piping instead of promise in getting the response
 
   // with restrictions for Amman using google maps options but inaccurate
 
@@ -34,16 +35,4 @@ export class LocationsService {
   //   return places;
   // }
 
-  // with restrictions for Amman using google maps options and piping the axios response object
-
-  // PlaceAutoComplete(input: string): Observable<AxiosResponse<any>> {
-  //   const res = this.httpService
-  //     .get(
-  //       `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${input}}&location=31.963158,35.930359&radius=10000&strictbounds=true&key=AIzaSyCyCaYl9RqVL9oN6vsDK-OKYXs_vHUTtDo`,
-  //     )
-  //     .pipe(
-  //       map((response) => response.data.predictions)
-  //     );
-  //   return res;
-  // }
 }
