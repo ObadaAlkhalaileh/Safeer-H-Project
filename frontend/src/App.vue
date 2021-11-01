@@ -17,6 +17,7 @@
           <i class="fas fa-map-marker-alt"></i>&nbsp;
           {{ result }}
         </li>
+        <img id="by-google" src="./powered_by_google_on_non_white.png" alt="powered by google">
       </ul>
     </div>
   </div>
@@ -117,6 +118,7 @@ h2 {
   border-radius: 5px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
     rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    position: relative;
 }
 .item {
   padding: 10px 10px 10px 10px;
@@ -125,5 +127,9 @@ h2 {
   cursor: pointer;
   background-color: #3c5576;
   color: whitesmoke;
+}
+#by-google{
+  position: absolute;
+  right: 0;
 }
 </style>
