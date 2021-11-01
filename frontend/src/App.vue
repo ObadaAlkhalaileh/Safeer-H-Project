@@ -17,7 +17,7 @@
           <i class="fas fa-map-marker-alt"></i>&nbsp;
           {{ result }}
         </li>
-        <img id="by-google" src="./powered_by_google_on_non_white.png" alt="powered by google">
+        <img id="by-google" src="powered_by_google_on_non_white.png" alt="powered by google">
       </ul>
     </div>
   </div>
